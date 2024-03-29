@@ -1,0 +1,65 @@
+# This workflow is the main workflow on pushing to the main branch
+# and runs builds, releases, conventional commits, and pushes.
+
+name: Main
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  build-node:
+    uses: ./.github/workflows/build-node.yml
+
+  build-image:
+    uses: ./.github/workflows/build-image.yml
+    needs: build-node
+    with:
+      tagTypes: |
+        type=sha
+
+  snyk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+  release:
+    runs-on: ubuntu-latest
+    needs: [build-image, snyk]
+    outputs:
+      version: ${{ steps.release.outputs.version }}
+    steps:
+      - name: Checkout code with commit history
+        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+        with:
+          fetch-depth: 0
+
+      - name: Semantic Release
+        uses: go-semantic-release/action@1b14387401a1c3b588c807afd4ba4a921fd9cc31 # v1.21.0
+        id: release
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          update-file: package.json
+          changelog-file: CHANGELOG.md
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        if: steps.release.outputs.version != ''
+        with:
+          commit_message: "chore(release): ${{ steps.release.outputs.version }} [skip ci]"
+          file_pattern: 'package.json CHANGELOG.md'
+
+  publish-image:
+    uses: ./.github/workflows/build-image.yml
+    needs: release
+    if: needs.release.outputs.version != ''
+    with:
+      tagTypes: |
+        type=semver,pattern={{version}},value=${{ needs.release.outputs.version }}
+        type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}

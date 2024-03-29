@@ -1,0 +1,62 @@
+@use "sass:map";
+
+@mixin breakpoint($breakpoint) {
+  $breakpoints: (
+    xs: 359px,
+    s: 639px,
+    m: 1023px,
+    l: 1279px,
+    xl: 1439px,
+  );
+
+  @if map-has-key($breakpoints, $breakpoint) {
+    $value: map.get($breakpoints, $breakpoint);
+
+    @media (max-width: $value) {
+      @content;
+    }
+  }
+}
+
+.bannerWrapper {
+  width: 100%;
+}
+
+.mainBanner {
+  padding: 20px;
+  color: #eee;
+  width: 75%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include breakpoint(m) {
+    text-align: center;
+  }
+
+  @include breakpoint(s) {
+    display: none;
+  }
+
+  h2 {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 34px;
+    margin-top: 75px;
+  }
+
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+}
+
+.blogList {
+  padding: 35px;
+}
+
+.loadingText {
+  color: #eee;
+  text-align: center;
+}

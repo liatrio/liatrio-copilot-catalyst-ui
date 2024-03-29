@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "types": ["node", "@wdio/mocha-framework", "expect-webdriverio"],
+    "target": "ESNext"
+  },
+  "extends": "../tsconfig.json"
+}

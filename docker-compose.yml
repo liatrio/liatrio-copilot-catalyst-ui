@@ -1,0 +1,18 @@
+version: "3.5"
+services:
+  dks-ui:
+    image: ${APP_NAME}:${SHA_TAG}
+    container_name: ${APP_NAME}
+    ports:
+      - ${APP_PORT}:3000
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - frontend
+      - backend
+networks:
+  frontend:
+    name: frontend
+  backend:
+    name: backend

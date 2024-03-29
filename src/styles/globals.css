@@ -1,0 +1,76 @@
+html,
+body {
+  /* background-color:; */
+  background-color: #181a1b;
+  padding: 0;
+  margin: 0;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  src: local("Roboto Light"), local("Roboto-Light"),
+    url("/fonts/roboto/light.woff2") format("woff2"),
+    url("/fonts/roboto/light.woff") format("woff");
+}
+
+@font-face {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto"), local("Roboto-Regular"),
+    url("/fonts/roboto/regular.woff2") format("woff2"),
+    url("/fonts/roboto/regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  src: local("Roboto Medium"), local("Roboto-Medium"),
+    url("/fonts/roboto/medium.woff2") format("woff2"),
+    url("/fonts/roboto/medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  src: local("Roboto Bold"), local("Roboto-Bold"),
+    url("/fonts/roboto/bold.woff2") format("woff2"),
+    url("/fonts/roboto/bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: Roboto Condensed;
+  font-style: normal;
+  font-weight: 300;
+  src: local("Roboto Condensed Light"),
+    url("/fonts/roboto-condensed/light.woff2") format("woff2"),
+    url("/fonts/roboto-condensed/light.woff") format("woff");
+}
+
+@font-face {
+  font-family: Roboto Condensed;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto Condensed Regular"),
+    url("/fonts/roboto-condensed/regular.woff2") format("woff2"),
+    url("/fonts/roboto-condensed/regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: Roboto Condensed;
+  font-style: normal;
+  font-weight: 700;
+  src: local("Roboto Condensed Bold"),
+    url("/fonts/roboto-condensed/bold.woff2") format("woff2"),
+    url("/fonts/roboto-condensed/bold.woff") format("woff");
+}

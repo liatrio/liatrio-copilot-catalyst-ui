@@ -1,0 +1,96 @@
+{
+  "name": "dks-ui",
+  "version": "0.3.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "check-types": "tsc",
+    "dev": "next dev",
+    "lint": "next lint",
+    "start": "next start",
+    "dockerBuild": "docker build -t $npm_package_name .",
+    "dockerRun": "docker run -e DKS_API_BASE_URL=http://host.docker.internal:8080 -p 3000:3000 -it $npm_package_name",
+    "helm": "helm upgrade --install $npm_package_name deployment/helm -f deployment/helm/values-local.yaml",
+    "buildAndHelm": "npm-run-all dockerBuild helm",
+    "test": "jest --coverage --coverageDirectory ./coverage",
+    "testContract": "npm run test --workspace test/contract",
+    "testWatch": "jest --watch",
+    "validate": "npm-run-all --parallel check-types lint",
+    "validateBuild": "npm-run-all --parallel validate build",
+    "wdio": "wdio run test/webdriver/chromedriver.conf.ts",
+    "wdio-github": "wdio run test/webdriver/github-actions.conf.ts",
+    "wdio-local": "wdio run test/webdriver/chromedriver.conf.ts",
+    "wdio-dev": "wdio run test/webdriver/zalenium-dev.conf.ts",
+    "wdio-qa": "wdio run test/webdriver/zalenium-qa.conf.ts "
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liatrio/dks-ui"
+  },
+  "workspaces": [
+    "src",
+    "test/**"
+  ],
+  "keywords": [
+    "Next.js",
+    "React",
+    "Template"
+  ],
+  "author": "liatrio",
+  "bugs": {
+    "url": "https://github.com/liatrio/dks-ui"
+  },
+  "homepage": "https://github.com/liatrio/dks-ui",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "html5-history-api": "^4.2.10",
+    "next": "14.1.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-table": "^7.8.0",
+    "sharp": "^0.33.2"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "5.17.0",
+    "@testing-library/react": "14.2.2",
+    "@testing-library/user-event": "14.5.2",
+    "@types/jest": "27.5.2",
+    "@types/node": "20.11.30",
+    "@types/react": "18.2.67",
+    "@types/react-table": "7.7.20",
+    "@wdio/cli": "8.35.1",
+    "@wdio/local-runner": "8.35.1",
+    "@wdio/mocha-framework": "8.35.0",
+    "@wdio/selenium-standalone-service": "8.15.0",
+    "@wdio/spec-reporter": "8.32.4",
+    "chromedriver": "122.0.6",
+    "dotenv": "16.4.5",
+    "eslint": "8.57.0",
+    "eslint-config-next": "14.1.4",
+    "jest": "27.5.1",
+    "jest-junit": "14.0.1",
+    "jest-watch-typeahead": "2.2.2",
+    "lint-staged": "15.2.2",
+    "node-mocks-http": "1.14.1",
+    "npm-run-all2": "5.0.2",
+    "prettier": "3.2.5",
+    "sass": "1.72.0",
+    "start-server-and-test": "2.0.3",
+    "stylelint": "16.2.1",
+    "stylelint-config-standard-scss": "12.0.0",
+    "ts-node": "10.9.2",
+    "typescript": "5.4.3",
+    "wdio-chromedriver-service": "8.1.1",
+    "wdio-wait-for": "3.0.11"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not dead",
+    "ie >= 9"
+  ],
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
+    "*.{css,scss}": "stylelint --cache --fix",
+    "*.{js,jsx,ts,tsx,css,scss,json,md,mdx,yaml,yml}": "prettier --write"
+  }
+}

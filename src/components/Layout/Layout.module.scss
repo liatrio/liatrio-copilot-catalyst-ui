@@ -1,0 +1,33 @@
+.navbar {
+  color: #eee;
+  background: rgb(10 10 10);
+  text-align: left;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  padding-bottom: 8px;
+}
+
+.navbarBrand {
+  vertical-align: middle;
+  padding-right: 5px;
+}
+
+.navbarText {
+  display: inline-block;
+  vertical-align: auto;
+}
+
+.footer {
+  color: #eee;
+  background-color: black;
+  font-size: 14;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  padding-top: 8px;
+  padding-bottom: 10px;
+}

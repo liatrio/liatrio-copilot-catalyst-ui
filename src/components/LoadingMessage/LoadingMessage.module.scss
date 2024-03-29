@@ -1,0 +1,21 @@
+.container {
+  width: 50%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.topBar {
+  background-color: #c8102e;
+  padding: 4px;
+  border-radius: 4px 4px 0 0;
+  color: #eee;
+}
+
+.message {
+  padding: 4px;
+  background-color: #eee;
+  font-weight: bold;
+}
