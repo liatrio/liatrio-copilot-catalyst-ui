@@ -1,0 +1,27 @@
+{{- if .Values.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "dks-ui.fullname" . }}
+  labels:
+    {{- include "dks-ui.labels" . | nindent 4 }}
+  annotations:
+    {{ .Values.ingress.annotations | toYaml | nindent 4 }}
+spec:
+  ingressClassName: {{ .Values.ingress.class }}
+  tls:
+  - hosts:
+    - {{ .Values.ingress.fqdn }}
+    secretName: {{ include "dks-ui.fullname" . }}-cert
+  rules:
+  - host: {{ .Values.ingress.fqdn }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ include "dks-ui.fullname" . }}
+            port:
+              number: 80
+{{- end}}

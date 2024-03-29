@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: { { include "dks-ui.fullname" . } }
+spec:
+  podSelector:
+    matchLabels: { { - include "dks-ui.selectorLabels" . | nindent 6 } }
+  ingress:
+    # Accept inbound traffic within the cluster
+    - from:
+        - namespaceSelector: {}
+  # Egress only within the namespace
+  egress:
+    - to:
+        - podSelector: {}
+  policyTypes:
+    - Egress
+    - Ingress

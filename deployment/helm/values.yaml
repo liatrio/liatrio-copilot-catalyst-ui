@@ -1,0 +1,86 @@
+# Default values for dks-ui.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+nameOverride: ""
+fullnameOverride: ""
+replicaCount: 1
+imagePullSecrets: []
+
+image:
+  registry: ghcr.io/liatrio-delivery-povs
+  repository: dks-ui
+  pullPolicy: IfNotPresent
+  tag: latest
+
+podSecurityContext:
+  fsGroup: 1000
+  runAsGroup: 1000
+  runAsNonRoot: true
+  runAsUser: 1001
+  seccompProfile:
+    type: RuntimeDefault
+
+recreatePods: false
+
+featureFlags:
+  enableImageURL: true
+
+deployment:
+  annotations:
+    liatrio.com/skipAppScanValidation: "public image"
+  pod:
+    annotations: {}
+
+apiURL: http://devops-knowledge-share-api
+
+ingress:
+  enabled: false
+  class: nginx
+  fqdn: ui.example.com
+  annotations:
+    cert-manager.io/cluster-issuer: ca-issuer
+    ingress.kubernetes.io/force-ssl-redirect: "true"
+
+service:
+  annotations:
+    ad.datadoghq.com/service.check_names: '["http_check"]'
+    ad.datadoghq.com/service.init_configs: "[{}]"
+    ad.datadoghq.com/service.instances: |
+      [
+          {
+            "name": "{{ include "dks-ui.name" . }}.{{ .Release.namespace }}.svc.cluster.local",
+            "url": "http://{{ include "dks-ui.name" . }}.{{ .Release.namespace }}.svc.cluster.local/diagnostic/status/heartbeat",
+            "timeout": 10,
+            "http_response_status_code": "200",
+            "ignore_ssl_warning": true,
+            "disable_ssl_validation": true,
+            "check_certificate_expiration": false,
+            "tags": ["exampleCompany-di:true", "check_url_type:internal", "service:{{ include "dks-ui.name" . }}"]
+          },
+          {
+            "name": "{{ .Values.fqdn }}",
+            "url": "https://{{ .Values.fqdn }}/diagnostic/status/heartbeat,
+            "timeout": 10,
+            "http_response_status_code": "200",
+            "ignore_ssl_warning": true,
+            "disable_ssl_validation": true,
+            "check_certificate_expiration": false,
+            "tags": ["exampleCompany-di:true", "check_url_type:external", "service:{{ include "dks-ui.name" . }}"]
+          }
+      ]
+
+resources:
+  limits:
+    cpu: 1.5
+    memory: 1Gi
+  requests:
+    cpu: 50m
+    memory: 256Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 3
+  maxReplicas: 5
+  minAvailable: 1
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 70

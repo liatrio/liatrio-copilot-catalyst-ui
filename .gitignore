@@ -1,0 +1,36 @@
+node_modules
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE files
+.idea/
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+junit.xml
+cypress/videos/
+cypress/screenshots/
+
+# SSL files
+*.key
+*.csr
+
+# Cache files
+.eslintcache
+.stylelintcache
+.next/
+.dccache
+
+certs/ingress-secret.yml
+
+notes
+.env
+
+*.tsbuildinfo

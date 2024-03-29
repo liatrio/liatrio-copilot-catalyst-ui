@@ -1,0 +1,21 @@
+{
+  "name": "Node 20",
+  "context": "../",
+  "dockerFile": "../Dockerfile",
+  "build": {
+    "target": "dev"
+  },
+  "extensions": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "editorconfig.editorconfig",
+    "eamodio.gitlens",
+    "ms-vsliveshare.vsliveshare",
+    "naumovs.color-highlight",
+    "coenraads.bracket-pair-colorizer"
+  ],
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "zsh"
+  },
+  "forwardPorts": [3000]
+}

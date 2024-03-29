@@ -1,0 +1,37 @@
+.container {
+  border: 1px solid #777;
+  color: #eee;
+  padding: 10px;
+  position: relative;
+  margin-bottom: 20px;
+  min-width: 350px;
+}
+
+.label {
+  position: absolute;
+  left: 10px;
+  top: -10px;
+  background: #181a1b;
+  padding: 0 5px;
+}
+
+.input {
+  background-color: #181a1b;
+  color: #eee;
+  border: none;
+  width: 100%;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input:-webkit-autofill,
+.input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+.container:focus-within {
+  border: 1px solid #c8102e;
+  color: #c8102e;
+}

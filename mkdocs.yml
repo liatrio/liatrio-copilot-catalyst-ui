@@ -1,0 +1,8 @@
+site_name: dks-ui-react | dump}}
+site_description: dks-ui-react | dump}}
+
+nav:
+  - Introduction: index.md
+  - SSL Cert Guide: SSL-cert-guide.md
+# plugins:
+#   - techdocs-core

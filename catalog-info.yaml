@@ -1,0 +1,27 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: dks-ui
+  description: Next/React Application
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: https://github.com/liatrio/dks-ui
+  tags:
+    - next
+    - react
+    - typescript
+    - mocha
+    - chai
+    - eslint
+    - prettier
+    - cypress
+  links:
+    - url: https://dojo.liatr.io/
+      title: Dojo Practice
+      icon: techdocs
+spec:
+  type: website
+  system: dojo
+  owner: practice-dojo
+  lifecycle: production

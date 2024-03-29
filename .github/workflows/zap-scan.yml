@@ -1,0 +1,77 @@
+name: ZAP Scan
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: The URL to scan
+        type: string
+    secrets:
+      TAILSCALE_AUTH_KEY:
+        description: Tailscale Auth key
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+        with:
+          fetch-depth: 0
+
+      - name: Download Tailscale
+        shell: bash
+        id: download
+        env:
+          VERSION: 1.34.0
+        run: |
+          MINOR=$(echo "$VERSION" | awk -F '.' {'print $2'})
+          if [ $((MINOR % 2)) -eq 0 ]; then
+            URL="https://pkgs.tailscale.com/stable/tailscale_${VERSION}_amd64.tgz"
+          else
+            URL="https://pkgs.tailscale.com/unstable/tailscale_${VERSION}_amd64.tgz"
+          fi
+          curl "$URL" -o tailscale.tgz
+          tar -C /tmp -xzf tailscale.tgz
+          rm tailscale.tgz
+          TSPATH=/tmp/tailscale_${VERSION}_amd64
+          sudo mv "${TSPATH}/tailscale" "${TSPATH}/tailscaled" /usr/bin
+
+      - name: Run Tailscale
+        shell: bash
+        env:
+          TAILSCALE_AUTHKEY: ${{ secrets.TAILSCALE_AUTH_KEY }}
+        run: |
+          sudo tailscaled 2>~/tailscaled.log &
+          if [ -z "${HOSTNAME}" ]; then
+            HOSTNAME="github-$(cat /etc/hostname)"
+          fi
+          sudo timeout 30 tailscale up --timeout 30s --auth-key ${TAILSCALE_AUTHKEY} --accept-routes
+
+
+      - name: Curl Test
+        shell: bash
+        run: |
+          curl --insecure -v '${{ inputs.url }}'
+
+      - name: ZAP Scan
+        uses: zaproxy/action-full-scan@6eade0f93b10fad8cfb4e63b979703a2cbd0cc98 # v0.4.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          docker_name: 'owasp/zap2docker-stable'
+          target: '${{ inputs.url }}'
+          allow_issue_writing: false
+          rules_file_name: '.zap/rules.tsv'
+          cmd_options: '-a -J zap_report.json -m 2'
+
+      - name: Curl Test
+        shell: bash
+        run: |
+          ls -al
+
+      - uses: actions/upload-artifact@a8a3f3ad30e3422c9c7b888a15615d19a852ae32 # v3
+        with:
+          name: zap_results
+          path: 'zap_report.json'
+
+
