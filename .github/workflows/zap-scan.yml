@@ -55,7 +55,7 @@ jobs:
           curl --insecure -v '${{ inputs.url }}'
 
       - name: ZAP Scan
-        uses: zaproxy/action-full-scan@6eade0f93b10fad8cfb4e63b979703a2cbd0cc98 # v0.4.0
+        uses: zaproxy/action-full-scan@0f8503472afc3d03963d42a593629622d1a8c13b # v0.11.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           docker_name: 'owasp/zap2docker-stable'
