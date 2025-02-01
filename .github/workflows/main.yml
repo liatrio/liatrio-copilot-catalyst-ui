@@ -41,7 +41,7 @@ jobs:
           fetch-depth: 0
 
       - name: Semantic Release
-        uses: go-semantic-release/action@1b14387401a1c3b588c807afd4ba4a921fd9cc31 # v1.21.0
+        uses: go-semantic-release/action@2e9dc4247a6004f8377781bef4cb9dad273a741f # v1.24.1
         id: release
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
