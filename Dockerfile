@@ -1,10 +1,10 @@
-FROM node:20-alpine@sha256:bf77dc26e48ea95fca9d1aceb5acfa69d2e546b765ec2abfb502975f1a2d4def AS dev
+FROM node:20-alpine@sha256:053c1d99e608fe9fa0db6821edd84276277c0a663cd181f4a3e59ee20f5f07ea AS dev
 
 RUN apk add --no-cache zsh=5.9-r2 curl=8.5.0-r0 wget=1.21.4-r0 git=2.43.0-r0 openssh=9.6_p1-r0 && \
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" && \
   rm -rf /var/cache/apk/*
 
-FROM node:20-alpine@sha256:bf77dc26e48ea95fca9d1aceb5acfa69d2e546b765ec2abfb502975f1a2d4def AS builder
+FROM node:20-alpine@sha256:053c1d99e608fe9fa0db6821edd84276277c0a663cd181f4a3e59ee20f5f07ea AS builder
 
 ENV NEXT_TELEMETRY_DISABLED 1
 WORKDIR /app
@@ -28,7 +28,7 @@ RUN npm run validateBuild && \
     npm prune --production
 
 
-FROM node:20-alpine@sha256:bf77dc26e48ea95fca9d1aceb5acfa69d2e546b765ec2abfb502975f1a2d4def AS runner
+FROM node:20-alpine@sha256:053c1d99e608fe9fa0db6821edd84276277c0a663cd181f4a3e59ee20f5f07ea AS runner
 
 WORKDIR /app
 ENV NODE_ENV production
