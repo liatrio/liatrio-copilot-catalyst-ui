@@ -1,7 +1,19 @@
+:root {
+  /* Brand tokens (tweak as needed to match Liatrio site) */
+  --color-brand: #a3e635; /* lime-400 */
+  --color-brand-600: #65a30d; /* lime-700 */
+  --color-brand-700: #4d7c0f; /* lime-800 */
+  --color-bg: #ffffff;
+  --color-surface: #f7f8f9;
+  --color-text: #111827; /* gray-900 */
+  --color-muted: #6b7280; /* gray-500 */
+  --color-border: #e5e7eb; /* gray-200 */
+}
+
 html,
 body {
-  /* background-color:; */
-  background-color: #181a1b;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   padding: 0;
   margin: 0;
   font-family: Roboto, Arial, sans-serif;

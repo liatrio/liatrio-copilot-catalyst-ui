@@ -24,7 +24,7 @@
 
 .mainBanner {
   padding: 20px;
-  color: #eee;
+  color: var(--color-text);
   width: 75%;
   max-width: 1440px;
   margin-left: auto;
@@ -39,15 +39,16 @@
   }
 
   h2 {
-    font-size: 28px;
-    font-weight: 500;
+  font-size: 28px;
+  font-weight: 700;
     line-height: 34px;
     margin-top: 75px;
+  letter-spacing: 0.2px;
   }
 
   p {
-    font-size: 16px;
-    font-weight: 400;
+  font-size: 16px;
+  font-weight: 400;
     line-height: 20px;
   }
 }
@@ -57,6 +58,6 @@
 }
 
 .loadingText {
-  color: #eee;
+  color: var(--color-muted);
   text-align: center;
 }
