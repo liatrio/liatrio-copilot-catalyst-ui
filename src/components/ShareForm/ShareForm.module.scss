@@ -68,8 +68,8 @@
 }
 
 .inputContainer {
-  border: 1px solid #777;
-  color: #eee;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
   padding: 10px;
   position: relative;
   margin-bottom: 20px;
@@ -80,13 +80,13 @@
   position: absolute;
   left: 10px;
   top: -10px;
-  background: #181a1b;
+  background: var(--color-bg);
   padding: 0 5px;
 }
 
 .input {
-  background-color: #181a1b;
-  color: #eee;
+  background-color: #fff;
+  color: var(--color-text);
   border: none;
   width: 100%;
 }
@@ -101,6 +101,6 @@
 }
 
 .inputContainer:focus-within {
-  border: 1px solid #c8102e;
-  color: #c8102e;
+  border: 1px solid var(--color-brand-600);
+  box-shadow: 0 0 0 3px rgba(163, 230, 53, 0.25);
 }

@@ -1,12 +1,13 @@
 .navbar {
-  color: #eee;
-  background: rgb(10 10 10);
+  color: var(--color-text);
+  background: var(--color-bg);
+  border-bottom: 2px solid var(--color-brand);
   text-align: left;
   display: inline-block;
   width: 100%;
   height: auto;
   position: fixed;
-  padding-bottom: 8px;
+  padding: 10px 12px 8px;
 }
 
 .navbarBrand {
@@ -16,18 +17,21 @@
 
 .navbarText {
   display: inline-block;
-  vertical-align: auto;
+  vertical-align: middle;
+  font-family: "Roboto Condensed", Roboto, Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.3px;
 }
 
 .footer {
-  color: #eee;
-  background-color: black;
-  font-size: 14;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border-top: 2px solid var(--color-brand);
+  font-size: 14px;
   text-align: center;
   display: inline-block;
   width: 100%;
   position: fixed;
   bottom: 0px;
-  padding-top: 8px;
-  padding-bottom: 10px;
+  padding: 10px 0 12px;
 }

@@ -17,10 +17,10 @@ const Layout = ({ children, title }: Props) => (
         <Link href="/" className={styles.navbarBrand}>
           <span className={globalStyles.logo}>
             <Image
-              src="/dojo-logo-sm.png"
-              alt="dojo-small"
-              width={50}
-              height={50}
+              src="/liatrio.png"
+              alt="Liatrio logo"
+              width={96}
+              height={32}
               style={{
                 maxWidth: "100%",
                 height: "auto",
@@ -50,7 +50,7 @@ const Layout = ({ children, title }: Props) => (
       </span>
       &nbsp;&nbsp;&nbsp;&nbsp;
       <Link href="/about">
-        <span style={{ fontSize: 20, color: "lightgreen" }}>| About |</span>
+        <span style={{ fontSize: 20, color: "var(--color-brand)" }}>| About |</span>
       </Link>
     </footer>
   </>

@@ -1,17 +1,20 @@
 .submitbutton {
-  background-color: #c8102e;
-  color: #fff;
-  font-weight: bold;
-  padding: 15px 30px;
-  border: 1px solid #f00;
-  border-radius: 5px;
+  background-color: var(--color-brand);
+  color: #0a0a0a;
+  font-weight: 700;
+  padding: 12px 24px;
+  border: 1px solid var(--color-brand-600);
+  border-radius: 9999px;
+  transition: background-color 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+  cursor: pointer;
 }
 
 .submitbutton:hover {
-  background-color: #a00;
-  color: #fff;
-  font-weight: bold;
-  padding: 15px 30px;
-  border: 1px solid #a00;
-  border-radius: 5px;
+  background-color: var(--color-brand-600);
+  border-color: var(--color-brand-700);
+}
+
+.submitbutton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(163, 230, 53, 0.4);
 }

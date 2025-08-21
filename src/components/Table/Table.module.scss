@@ -9,12 +9,12 @@
 }
 
 .tableheader {
-  color: #fff;
+  color: var(--color-text);
 }
 
 .headerRow {
-  color: #eee;
-  background-color: #c8102e;
+  color: #0a0a0a;
+  background-color: var(--color-brand);
   text-align: center;
   text-align: left;
 
@@ -35,8 +35,8 @@
 }
 
 .row {
-  color: black;
-  background-color: #eee;
+  color: var(--color-text);
+  background-color: #ffffff;
   text-align: center;
 
   td {
@@ -48,19 +48,20 @@
 }
 
 .row:nth-child(even) {
-  background-color: #d8d8d8;
+  background-color: var(--color-surface);
 }
 
 .button {
-  background-color: #29333b;
-  color: #eee;
-  border: none;
-  border-radius: 4px;
+  background-color: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 4px 10px;
 }
 
 .link {
-  color: #98191a;
-  font-weight: 500;
+  color: var(--color-brand-700);
+  font-weight: 600;
 }
 
 .image {
