@@ -14,6 +14,6 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: liatrio/github-actions/conventional-pr-title@master
+      - uses: liatrio/github-actions/conventional-pr-title@7208146c9ce4749b4ff44ff8030d953a578fa209 # master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
